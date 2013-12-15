@@ -5,7 +5,7 @@
         padding: 0px
       }
 
-         #map_canvas {
+        #map, #map_canvas {
         width: 900px;
         height: 700px;
       }
