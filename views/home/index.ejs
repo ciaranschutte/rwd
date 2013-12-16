@@ -6,5 +6,13 @@
 
 
 <div id="map" ng-controller="markerCtrl">
+<form id="eventForm" ng-submit="save()">
+	<div class="form-group">
+		<label for="title">Title</label>
+		<input ng-model="markerEvent.title" class="form-control" placeholder="Title"></div>
+    <div class="form-group">
+    	<button type="submit" class="btn btn-default">Submit</button>
+</form>
+
 <map id="map_canvas"></map>
 </div>

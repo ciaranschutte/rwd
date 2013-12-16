@@ -4,11 +4,20 @@ app.controller("markerCtrl", ["$scope", "$http", function($scope, $http) {
 
 	$scope.id = 0;
 	$scope.markerEvent = {
-		lat: 0,
-		lng: 0,
+		latLng: 0,
 		title: ""
 	}
 	$scope.markers = [],
+
+	$scope.save = function(){
+		console.log("markerEvent", $scope.markerEvent);
+		$http.post('/collections/markers', {markerEvent: $scope.markerEvent})
+        	.success(function(data, status, headers, config) {
+            	console.log("posted successfully");
+            	//$scope.messages.unshift(data);
+            	//$scope.inputText = "";
+        });
+	},
 
 	$scope.shout = function() {
 		alert("HI!");
@@ -38,6 +47,8 @@ app.directive('map', function() {
 		          map: map,
 		        });
 
+
+		        scope.markerEvent.latLng = event.latLng;
 
 		        scope.markers.push({
 		        	id: scope.id++,

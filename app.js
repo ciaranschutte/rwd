@@ -32,10 +32,12 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
-app.param('collectionName', function(req, res, next, collectionName){
+var db = require('mongoskin').db('localhost:27017/mapptest', {safe:true});
+app.param('collectionName', function(req, res, next, collectionName) {
   req.collection = db.collection(collectionName)
   return next()
 });
+
 
 app.get('/', function(req, res) {
         home.index(req, res);
