@@ -5,7 +5,12 @@
         padding: 0px
       }
 
-        #map, #map_canvas {
+        #map_canvas {
         width: 900px;
         height: 700px;
+      }
+
+      #markers{
+        width:auto;
+        height:auto;
       }
