@@ -1,0 +1,21 @@
+<% layout('../boilerplate') -%>
+
+<div class="panel panel-primary" id="userPanel">
+	<div class="panel-heading">
+    	<h3 class="panel-title">User Info</h3>
+  	</div>	  
+  	<div class="panel-body">
+		<label for="id">Name</label>
+		<%= user.displayName %>
+		<br/>
+	
+		<label for="id">Email</label>
+		<%= user.emails[0].value %>
+	<br/>
+
+	
+		<label for="id">ID</label>
+		<%= user.identifier %>
+	
+	</div>
+</div>
