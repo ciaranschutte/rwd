@@ -25,7 +25,7 @@ passport.deserializeUser(function(obj, done) {
 
 passport.use(new GoogleStrategy({
     returnURL: 'http://maaap.herokuapp.com/auth/google/return',
-    realm: 'http://maaap.herokuapp.com:3000/'
+    realm: 'http://maaap.herokuapp.com/'
   },
   function(identifier, profile, done) {
     // asynchronous verification, for effect...
