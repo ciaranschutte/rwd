@@ -75,7 +75,7 @@ app.param('collectionName', function(req, res, next, collectionName) {
 
 
 
-app.get('/', function(req, res) {
+app.get('./', function(req, res) {
       if(req.session.user){
           //console.log("/ req",req.session.user);
           req.user = req.session.user;
@@ -93,22 +93,22 @@ app.get('/account', function(req, res){
 //   request.  The first step in Google authentication will involve redirecting
 //   the user to google.com.  After authenticating, Google will redirect the
 //   user back to this application at /auth/google/return
-app.get('/auth/google', passport.authenticate('google', {failureRedirect: '/login' }));
+app.get('./auth/google', passport.authenticate('google', {failureRedirect: '/login' }));
 
 // GET /auth/google/return
 //   Use passport.authenticate() as route middleware to authenticate the
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/google/return', 
+app.get('./auth/google/return', 
   passport.authenticate('google', {failureRedirect: '/test2' }),
   function(req, res) {
     req.session.user = req.user;
-    console.log("auth/google/return",req.session.user);
+    console.log(".auth/google/return",req.session.user);
     res.redirect('/');
   });
 
-app.get('/logout', function(req, res){
+app.get('./logout', function(req, res){
   delete req.session.user;
   res.redirect('/');
 });
