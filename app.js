@@ -24,7 +24,7 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new GoogleStrategy({
-    returnURL: 'http://maaap.herokuapp.com:3000/auth/google/return',
+    returnURL: 'http://maaap.herokuapp.com/auth/google/return',
     realm: 'http://maaap.herokuapp.com:3000/'
   },
   function(identifier, profile, done) {
