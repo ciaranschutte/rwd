@@ -67,7 +67,7 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
-var db = require('mongoskin').db('mongodb://user:password@ds057538.mongolab.com:57538/heroku_app2043091', {safe:true});
+var db = require('mongoskin').db('mongodb://ciaran:password1@ds057538.mongolab.com:57538/heroku_app20430910', {safe:true});
 app.param('collectionName', function(req, res, next, collectionName) {
   req.collection = db.collection(collectionName);
   return next();
