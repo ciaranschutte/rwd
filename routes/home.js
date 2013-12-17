@@ -1,3 +1,3 @@
 exports.index = function(req, res){
-  res.render('home/index', { title: 'Send Messages' });
+  res.render('home/index', { title: 'Mapp' });
 };

@@ -5,12 +5,30 @@
         padding: 0px
       }
 
-        #map_canvas {
-        width: 900px;
+#map {
+  margin-top: 1%;
+  width: 100%;
+}
+      #eventForm {
+        width:20%;
+        margin:0 1%;
+        float:left;
+      }
+
+      #buttonsGroup{
+        text-align: center;
+      }
+
+      #map_canvas {
+        width: 70%;
         height: 700px;
       }
 
-      #markers{
-        width:auto;
-        height:auto;
+      #userPanel{
+        width:40%;
+        margin-top: 1%;
+        margin-left: 1%;
       }
+
+
+

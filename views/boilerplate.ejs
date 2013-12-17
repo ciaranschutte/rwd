@@ -1,17 +1,47 @@
 <!DOCTYPE html>
 <html ng-app="Mapp">
   <head>
-    <title><%= title %></title>
+    <title>test</title>
       <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
       <link href="/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
       <link href="/css/app.css" media="all" rel="stylesheet" type="text/css" />
   </head>
   <body>
+  
+  
     <header>
+	<% if (!user) { %>
+			
+			<div id="outer">
+				<div id="inner">
+						<div id="middle">
+						<button class="btn btn-default" onclick="location.href='/';" id="homeButton" submit-button>Home</button>
+						<button class="btn btn-default" onclick="location.href='/auth/google';" id="loginButton" submit-button>Login</button>
+					</div>
+				</div>
+			</div>
+			
+		<% } else { %>
+		
+			<div id="outer">
+				<div id="inner">
+				<div id="middle">
+			Hi <%= user.displayName %>
+			<button class="btn btn-default" onclick="location.href='/';" id="homeButton" submit-button>Home</button> | 
+			<button class="btn btn-default" onclick="location.href='/account';" id="accountButton" submit-button>Account</button> | 
+			<button class="btn btn-default" onclick="location.href='/logout';" id="logoutButton" submit-button>Log Out</button>			
+			</div>
+			</div>
+			</div>
+		<% } %>
     </header>
+	
+	
     <section>
       <%-body -%>
     </section>
+	
+	
     <footer>
     </footer>
 
