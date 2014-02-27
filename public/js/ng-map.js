@@ -26,7 +26,75 @@ app.controller("markerCtrl", ["$scope", "$http", function($scope, $http) {
 	$scope.markers = {};
 
 	$scope.map = null;
+/*
+		$http.defaults.headers.common.Authentication = 'Basic REVWNzpQYXNzd29yZDEh';
 
+
+
+	$http({method: 'GET', url: 'http://54.84.210.109:8000/dragonites/JohnAndCiaran/dontdeleteme/tests.xsodata/stops?$format=json'}).
+		success(function(data,status,headers,config){
+			console.log("SUCESS");
+
+		}).
+		error(function(data, status, headers, config){
+			console.log("error");
+		});
+*/
+var marker1 = null;
+setTimeout(function(){
+$.ajax({
+	
+  url: 'http://54.84.210.109:8000/dragonites/JohnAndCiaran/dontdeleteme/tests.xsodata/stops?$format=json',
+/*  beforeSend: function (xhr) {
+    xhr.setRequestHeader ("Authorization", "Basic REVWNzpQYXNzd29yZDEh");
+	},*/
+  type:"GET",
+	dataType:"json",
+	headers:{"Access-Control-Allow-Origin":"*",
+	"Authorization":"Basic REVWNzpQYXNzd29yZDEh"
+},
+	crossDomain:true,
+	xhrFields:{withCredentials:true},
+	async:false
+ }).done(function(){
+ 	console.log("finished req");
+ }).success(function(data){
+ 	console.log("success req");
+ 	console.log("data: ",data);
+
+ 	console.log("lat:",data.d.results[0].STOPLATITUDE);
+console.log("long:",data.d.results[0].STOPLONGITUDE);
+console.log("name:",data.d.results[0].STOPNAME);
+marker1  = data.d.results[0];
+
+
+ 	for(var i=0; i<data.d.results.length;i++) {
+
+        	var marker = new google.maps.Marker({
+				map:$scope.map,
+				position:new google.maps.LatLng(data.d.results[i].STOPLATITUDE,data.d.results[i].STOPLONGITUDE),
+				title:data.d.results[i].STOPNAME,
+				description:data.d.results[i].STOPID,
+				//id: $scope.id++,
+				edit: false
+        	});
+
+
+ 	}
+ }).fail(function(){
+ 	console.log("fail req");
+ });
+console.log("map from scope: ",$scope.map);
+new google.maps.Marker({
+				map:$scope.map,
+				position:new google.maps.LatLng(marker1.STOPLATITUDE,marker1.STOPLONGITUDE),
+				title:marker1.STOPNAME,
+				description:marker1.STOPID,
+				//id: $scope.id++,
+				edit: false
+        	});
+
+},1000);
 	$scope.save = function(marker){
 		$http.post('/collections/markers', 
 			{
@@ -199,14 +267,14 @@ app.directive('map', function() {
 		link: function(scope, element, attrs) {
 			console.log("directive",scope);
 			var mapOptions = {    
-	          zoom: 12,
-	          center: new google.maps.LatLng(53.349578,-6.260258),
+	          zoom: 17,
+	          center: new google.maps.LatLng(53.344428,-6.260877),
 	          mapTypeId: google.maps.MapTypeId.ROADMAP
 	        };
     
     		var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 			scope.map = map;
-
+/*
 			google.maps.event.addListener(map, "click", function(event) {
 
 				// create a marker and chuck our form event details into it
@@ -257,12 +325,14 @@ app.directive('map', function() {
 				});
 				
 				// save marker to db
-				scope.save(marker);
+				//scope.save(marker);
 
-		    });
+		    });*/
 		}
 	}		
 });
+
+
 
 /*
 app.directive('markers', function() {
