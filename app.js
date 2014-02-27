@@ -12,7 +12,8 @@ var express = require('express')
   , mongoskin = require('mongoskin');
   passport = require('passport')
   , util = require('util')
-  , GoogleStrategy = require('passport-google').Strategy;
+  , GoogleStrategy = require('passport-google').Strategy,
+  fs = require('fs');
 
   
   passport.serializeUser(function(user, done) {
@@ -61,6 +62,8 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 });
+
+
 
 // development only
 if ('development' == app.get('env')) {

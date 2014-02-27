@@ -17,7 +17,13 @@ app.controller("markerCtrl", ["$scope", "$http", function($scope, $http) {
 	$scope.map = null;
 
 	$scope.save = function(marker){
-		$http.post('/collections/markers', {id: marker.id, title:marker.title, description:marker.description, pos:marker.position})
+		$http.post('/collections/markers', 
+			{
+				id: marker.id, 
+				title:marker.title, 
+				description:marker.description, 
+				pos:marker.position
+			})
         	.success(function(data, status, headers, config) {
             	console.log("posted successfully",data);
 
@@ -83,7 +89,12 @@ app.controller("markerCtrl", ["$scope", "$http", function($scope, $http) {
 	$http.get('/collections/markers')
       .success(function(data, status, headers, config) {
       	// load markers into our local object and map
+      	console.log("Status: ",status);
+      	console.log("Headers: ",headers);
+      	console.log("Headers: ",headers);
         console.log("Loaded data",data);
+
+
         // wipe map then load with updated vals
         for (var m in $scope.markers) {
         	// from map
@@ -99,17 +110,33 @@ app.controller("markerCtrl", ["$scope", "$http", function($scope, $http) {
 
         // add all markers again
         // !! Loads of duplicated logic !!
+        console.log("markeers: ",$scope.markers);
+        console.log("data length: ",data.length);
+
         for(i = 0 ; i < data.length; i++) {
+        	console.log("in for looop");
         	// object
+
+        	console.log("data rec: ",data[i]);
+
+        	var pos = data[i]['pos'];
+        	console.log("data position: ",pos);
+
+        	var posMem = Object.keys(pos);
+        	console.log("data position first mem: ",posMem[0]);
+        	console.log("data position second mem: ",posMem[1]);
+
         	var marker = new google.maps.Marker({
 				map:$scope.map,
-				position:new google.maps.LatLng(data[i].pos.nb, data[i].pos.ob),
+				position:new google.maps.LatLng(posMem[0].toString(),posMem[1].toString()),
 				title:data[i].title,
 				description:data[i].description,
-				id: $scope.id++,
+				//id: $scope.id++,
 				edit: false
         	});
-        	google.maps.event.addListener(marker, "click", function() {
+
+
+        	/*google.maps.event.addListener(marker, "click", function() {
 			
 				// if first click, it doesn't need to be saved, just highlighted as edited
 				if(!marker.edit) {
@@ -132,11 +159,14 @@ app.controller("markerCtrl", ["$scope", "$http", function($scope, $http) {
 					//and it has to be saved to DB
 					$scope.update(marker.id);
 				}
-			});
+			});*/
         	
+
+        	// WTF is this?????/
+        	console.log("marker being added: ",marker);
         	var id = marker.id;
         	$scope.markers[id] = marker;
-        }
+        }// end for loop
 
       })
       .error(function(data, status, headers, config) {
