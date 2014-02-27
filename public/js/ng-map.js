@@ -5,11 +5,22 @@ app.controller("markerCtrl", ["$scope", "$http", function($scope, $http) {
 	$scope.id = 0;
 
 	$scope.currentMarker = null;
+	var giveMeDatePlease = function() {
+		var today = new Date();
+	    var dd = today.getDate();
+	    var mm = today.getMonth()+1; //January is 0!
 
+	    var yyyy = today.getFullYear();
+	    if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} var today = dd+'/'+mm+'/'+yyyy;
+	    return today;
+	}
 	$scope.markerEvent = {
 		title: "",
 		description: "",
-		latLng: 0
+		latLng: 0,
+		startDate: giveMeDatePlease(),
+		endDate: giveMeDatePlease(),
+		tags: []
 	};
 
 	$scope.markers = {};
@@ -85,7 +96,7 @@ app.controller("markerCtrl", ["$scope", "$http", function($scope, $http) {
 	};
 
 	// Do the initial load of markers on user button click, also used to poll for changes
-	$scope.Poll = function(){
+	$scope.poll = function(){
 	$http.get('/collections/markers')
       .success(function(data, status, headers, config) {
       	// load markers into our local object and map

@@ -28,9 +28,25 @@
 		<label for="description">Description</label>
 		<input ng-model="markerEvent.description" class="form-control" placeholder="Description" value="{{markerEvent.description}}">
 	</div>
+
+		<div class="form-group">
+		<label for="Start Date">Start Date</label>
+		<input ng-model="markerEvent.startDate" class="form-control" placeholder="01/01/2014" value="{{markerEvent.startDate}}">
+	</div>
+
+
+	<div class="form-group">
+		<label for="End Date">End Date</label>
+		<input ng-model="markerEvent.endDate" class="form-control" placeholder="01/01/2014" value="{{markerEvent.endDate}}">
+	</div>
+
+	<div class="form-group">
+		<label for="Tags">Tags</label>
+		<input ng-model="markerEvent.tags" class="form-control" placeholder="Tags" value="{{markerEvent.tags}}">
+	</div>
 	<div class="form-group" id="buttonsGroup">
 		  <button class="btn btn-danger" ng-click="delete()">Delete</button>
-		  <button class="btn btn-danger" ng-click="Poll()">Poll</button>
+		  <button class="btn btn-danger" ng-click="poll()">Poll</button>
 	</div>
 
 
