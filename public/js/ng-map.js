@@ -33,7 +33,10 @@ app.controller("markerCtrl", ["$scope", "$http", function($scope, $http) {
 				id: marker.id, 
 				title:marker.title, 
 				description:marker.description, 
-				pos:marker.position
+				pos:marker.position,
+				startDate: marker.startDate,
+		        endDate: marker.endDate,
+		        tags: marker.tags,
 			})
         	.success(function(data, status, headers, config) {
             	console.log("posted successfully",data);
@@ -215,6 +218,9 @@ app.directive('map', function() {
 		          // form elements
 		          title: scope.markerEvent.title,
 		          description: scope.markerEvent.description,
+		          startDate: scope.markerEvent.startDate,
+		          endDate: scope.markerEvent.endDate,
+		          tags: scope.markerEvent.tags,
 		          // token to show it doesn't need to be saved
 		          edit: false
 		        });
